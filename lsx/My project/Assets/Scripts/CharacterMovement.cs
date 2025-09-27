@@ -1,0 +1,41 @@
+using UnityEngine;
+
+[RequireComponent (typeof(CharacterController))] //Anotacion sobre la declaración de clase
+public class CharacterMovement : MonoBehaviour
+{
+    public Transform CameraTransform;
+    private CharacterController controller;
+    public float movementSpeed = 5f;
+    public float jumpForce = 10f; 
+    public float rotationSpeed = 20f;
+    public float gravity;
+    
+    void Start()
+    {
+        controller = GetComponent<CharacterController>();
+    }
+
+    void Update()
+    {
+        if (controller.isGrounded)
+        {
+            gravity = Physics.gravity.y * Time.deltaTime;
+            if (Input.GetKeyDown(KeyCode.Space)) gravity = jumpForce;
+        }
+        else
+        {
+            gravity += Physics.gravity.y * Time.deltaTime;
+        }
+        
+        var gravityVector = Vector3.up * gravity;
+        
+        var horizontal = Input.GetAxis("Horizontal");
+        var vertical = Input.GetAxis("Vertical");
+        
+        var cameraForward = new Vector3(CameraTransform.forward.x, 0, CameraTransform.forward.z);
+        var cameraRight = new Vector3(CameraTransform.right.x, 0, CameraTransform.right.z);
+        var direction = cameraForward * vertical + cameraRight * horizontal;
+        
+        controller.Move((direction * movementSpeed + gravityVector) * Time.deltaTime);
+    }
+}
