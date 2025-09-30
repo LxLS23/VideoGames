@@ -37,5 +37,12 @@ public class CharacterMovement : MonoBehaviour
         var direction = cameraForward * vertical + cameraRight * horizontal;
         
         controller.Move((direction * movementSpeed + gravityVector) * Time.deltaTime);
+        
+        //Aplicar rotación al personaje
+        if (direction != Vector3.zero)
+        {
+            var targetRotation = Quaternion.LookRotation(direction);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+        }
     }
 }
