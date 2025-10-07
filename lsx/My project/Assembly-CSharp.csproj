@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\CameraSystem.cs" />
     <Compile Include="Assets\Scripts\PhysicsMovement.cs" />
+    <Compile Include="Assets\Scripts\Practica.cs" />
     <Compile Include="Assets\Scripts\CharacterMovement.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\Scripts\Movement.cs" />
