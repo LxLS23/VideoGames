@@ -36,9 +36,9 @@ public class CharacterMovement : MonoBehaviour
         var gravityVector = Vector3.up * gravity;
         
         //Obtener el input a y d
-        var horizontal = Input.GetAxis("Horizontal");
+        var horizontal = Input.GetAxisRaw("Horizontal");
         //Obtener el input w y s
-        var vertical = Input.GetAxis("Vertical");
+        var vertical = Input.GetAxisRaw("Vertical");
         
         var cameraForward = new Vector3(CameraTransform.forward.x, 0, CameraTransform.forward.z);
         var cameraRight = new Vector3(CameraTransform.right.x, 0, CameraTransform.right.z);
